@@ -16,5 +16,6 @@ const config: Config = {
     },
   },
   plugins: [],
+  prefix: 'u-',
 };
 export default config;
