@@ -1,4 +1,3 @@
-// 'use client';
 import Image from 'next/image';
 import { MatchResponse } from '@/interfaces/match.interface';
 
@@ -88,17 +87,23 @@ const MatchTile = ({
           </div>
 
           <button className="u-w-5 u-h-5" onClick={handleToggleClick(match.id)}>
-            V
+            <p
+              className={`u-text-green-600 u-font-bold u-transition-transform ${
+                isExpanded ? 'u-rotate-180' : 'u-rotate-0'
+              }`}
+            >
+              V
+            </p>
           </button>
         </div>
       </div>
 
       <div
-        className={`u-overflow-hidden ${
-          isExpanded ? 'u-max-h-full' : 'u-max-h-0'
+        className={`u-h-full u-bg-gray-800 u-text-white u-overflow-hidden u-transition-[max-height] ${
+          isExpanded ? 'u-max-h-16' : 'u-max-h-0'
         }`}
       >
-        Expanded content
+        <p className="u-py-3 u-px-7">Expanded content</p>
       </div>
     </div>
   );
