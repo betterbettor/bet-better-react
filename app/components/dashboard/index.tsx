@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { ChangeEvent, useMemo, useState } from 'react';
 import MatchTiles from '../match-tiles';
 import { MatchResponse } from '@/interfaces/match.interface';
 import { ExpandedMap, ExpandedMapStates } from '@/interfaces/ui.type';
@@ -27,9 +27,15 @@ const Dashboard = ({ matches }: DashboardProps) => {
     expandedMapStates.ALL_COLLAPSED,
   );
 
+  const [keyword, setKeyword] = useState('');
+
   const hasAllTilesExpanded = useMemo(() => {
     return matches.every((match) => expandedMap.get(match.id));
   }, [expandedMap, matches]);
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setKeyword(event.target.value);
+  };
 
   const handleToggleAll = () => {
     setExpandedMap(
@@ -53,6 +59,7 @@ const Dashboard = ({ matches }: DashboardProps) => {
           type="text"
           className="u-py-3 u-px-7 u-w-full u-bg-green-300 u-rounded-full"
           placeholder="Search for a team"
+          onChange={handleInputChange}
         />
       </div>
 
