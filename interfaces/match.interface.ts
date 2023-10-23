@@ -8,7 +8,6 @@ interface Match {
   league: League;
   home: Team;
   away: Team;
-  ttl: number;
   lastUpdated: number;
 }
 
