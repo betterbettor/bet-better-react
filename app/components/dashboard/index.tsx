@@ -31,7 +31,7 @@ const Dashboard = ({ matches }: DashboardProps) => {
       return teamsSet;
     }, new Set<string>());
 
-    return Array.from(allTeamNamesSet);
+    return Array.from(allTeamNamesSet).sort();
   }, [matches]);
 
   const [expandedMap, setExpandedMap] = useState(
