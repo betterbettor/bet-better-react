@@ -3,31 +3,32 @@
 import { useMemo, useState } from 'react';
 import MatchTiles from '../match-tiles';
 import { MatchResponse } from '@/interfaces/match.interface';
-import { ExpandedMapStates } from '@/interfaces/ui.type';
+import { ExpandedMap, ExpandedMapStates } from '@/interfaces/ui.type';
 
 interface DashboardProps {
   matches: MatchResponse[];
 }
 
 const Dashboard = ({ matches }: DashboardProps) => {
-  const expandedMapStates: ExpandedMapStates = useMemo(
-    () =>
-      matches.reduce(
-        (states, match) => ({
-          ALL_EXPANDED: { ...states.ALL_EXPANDED, [match.id]: true },
-          ALL_COLLAPSED: { ...states.ALL_COLLAPSED, [match.id]: false },
-        }),
-        { ALL_EXPANDED: {}, ALL_COLLAPSED: {} },
-      ),
-    [matches],
-  );
+  const expandedMapStates: ExpandedMapStates = useMemo(() => {
+    const states: ExpandedMapStates = {
+      ALL_EXPANDED: new Map(),
+      ALL_COLLAPSED: new Map(),
+    };
+    matches.forEach((match) => {
+      states.ALL_EXPANDED.set(match.id, true);
+      states.ALL_COLLAPSED.set(match.id, false);
+    });
+
+    return states;
+  }, [matches]);
 
   const [expandedMap, setExpandedMap] = useState(
     expandedMapStates.ALL_COLLAPSED,
   );
 
   const hasAllTilesExpanded = useMemo(() => {
-    return matches.every((match) => expandedMap[match.id]);
+    return matches.every((match) => expandedMap.get(match.id));
   }, [expandedMap, matches]);
 
   const handleToggleAll = () => {
@@ -40,7 +41,8 @@ const Dashboard = ({ matches }: DashboardProps) => {
 
   const handleToggleMatchTile = (matchId: number) => {
     setExpandedMap((previousMap) => {
-      return { ...previousMap, [matchId]: !previousMap[matchId] };
+      const newMap: ExpandedMap = new Map(previousMap);
+      return newMap.set(matchId, !previousMap.get(matchId));
     });
   };
 

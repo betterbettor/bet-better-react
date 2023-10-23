@@ -26,7 +26,7 @@ const MatchTiles = ({
               <MatchTile
                 key={`${idx}-${match.id}`}
                 match={match}
-                isExpanded={expandedMap[match.id]}
+                isExpanded={expandedMap.get(match.id) ?? false}
                 onToggleMatchTile={onToggleMatchTile}
               />
             ))}
