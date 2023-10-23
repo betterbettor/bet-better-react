@@ -3,17 +3,11 @@
 import { useMemo, useState } from 'react';
 import MatchTiles from '../match-tiles';
 import { MatchResponse } from '@/interfaces/match.interface';
+import { ExpandedMapStates } from '@/interfaces/ui.type';
 
 interface DashboardProps {
   matches: MatchResponse[];
 }
-
-type ExpandedMap = Record<number, boolean>;
-
-type ExpandedMapStates = {
-  ALL_EXPANDED: ExpandedMap;
-  ALL_COLLAPSED: ExpandedMap;
-};
 
 const Dashboard = ({ matches }: DashboardProps) => {
   const expandedMapStates: ExpandedMapStates = useMemo(
