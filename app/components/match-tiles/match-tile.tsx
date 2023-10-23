@@ -4,7 +4,7 @@ import { MatchResponse } from '@/interfaces/match.interface';
 interface MatchTileProps {
   match: MatchResponse;
   isExpanded: boolean;
-  onToggleMatchTile?: (matchId: number) => void;
+  onToggleMatchTile: (matchId: number) => void;
 }
 const MatchTile = ({
   match,
@@ -16,8 +16,7 @@ const MatchTile = ({
     timeStyle: 'short',
   };
 
-  const handleToggleClick = (matchId: number) => () =>
-    onToggleMatchTile && onToggleMatchTile(matchId);
+  const handleToggleClick = () => onToggleMatchTile(match.id);
 
   return (
     <div className="u-py-3 u-px-7 u-bg-green-50 u-rounded-xl u-border u-text-slate-900 u-shadow">
@@ -86,7 +85,7 @@ const MatchTile = ({
             </div>
           </div>
 
-          <button className="u-w-5 u-h-5" onClick={handleToggleClick(match.id)}>
+          <button className="u-w-5 u-h-5" onClick={handleToggleClick}>
             <p
               className={`u-text-green-600 u-font-bold u-transition-transform ${
                 isExpanded ? 'u-rotate-180' : 'u-rotate-0'

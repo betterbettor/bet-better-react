@@ -8,7 +8,7 @@ const MatchTile = dynamic(() => import('./match-tile'), { ssr: false });
 interface MatchTilesProps {
   matches?: MatchResponse[];
   expandedMap: Record<number, boolean>;
-  onToggleMatchTile?: (matchId: number) => void;
+  onToggleMatchTile: (matchId: number) => void;
 }
 
 const MatchTiles = ({
