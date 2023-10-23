@@ -23,9 +23,9 @@ const MatchTiles = ({
         {!matches.length ? (
           <p className="u-text-slate-900 u-font-bold">No matches data found</p>
         ) : (
-          matches.map((match, idx) => (
+          matches.map((match) => (
             <MatchTile
-              key={`${idx}-${match.id}`}
+              key={match.id}
               match={match}
               isExpanded={expandedMap.get(match.id) ?? false}
               onToggleMatchTile={onToggleMatchTile}
