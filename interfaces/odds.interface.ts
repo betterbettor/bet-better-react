@@ -1,3 +1,5 @@
+export type BetValue = 'Home' | 'Away' | 'Draw';
+
 export interface OddsValues {
   home: number;
   away: number;

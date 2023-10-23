@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { MatchResponse } from '@/interfaces/match.interface';
 import DateInfo from './date-info';
+import OddsBlock from './odds-block';
 
 interface MatchTileProps {
   match: MatchResponse;
@@ -21,49 +22,22 @@ const MatchTile = ({
 
         <div className="u-flex u-items-center u-justify-between u-gap-3">
           <div className="u-flex-1 u-flex u-items-stretch u-justify-between u-gap-3">
-            <div className="u-flex-1 u-flex u-flex-col u-justify-between u-gap-3">
-              <div className="u-text-sm u-text-center u-font-bold">Home</div>
+            <OddsBlock
+              betValue="Home"
+              team={match.home}
+              oddsValue={match.odds[match.odds.length - 1].home}
+            />
 
-              <div className="u-flex u-items-center u-gap-3">
-                <Image
-                  src={match.home.logo}
-                  alt={match.home.name}
-                  width={30}
-                  height={30}
-                />
-                <h2 className="u-text-lg u-font-bold">{match.home.name}</h2>
-              </div>
+            <OddsBlock
+              betValue="Away"
+              team={match.away}
+              oddsValue={match.odds[match.odds.length - 1].away}
+            />
 
-              <div className="u-text-3xl u-text-center">
-                {match.odds[match.odds.length - 1].home}
-              </div>
-            </div>
-
-            <div className="u-flex-1 u-flex u-flex-col u-justify-between u-gap-3">
-              <div className="u-text-sm u-text-center u-font-bold">Away</div>
-
-              <div className="u-flex u-items-center u-gap-3">
-                <Image
-                  src={match.away.logo}
-                  alt={match.away.name}
-                  width={30}
-                  height={30}
-                />
-                <h2 className="u-text-lg u-font-bold">{match.away.name}</h2>
-              </div>
-
-              <div className="u-text-3xl u-text-center">
-                {match.odds[match.odds.length - 1].away}
-              </div>
-            </div>
-
-            <div className="u-flex-1 u-flex u-flex-col u-justify-between u-gap-3">
-              <div className="u-text-sm u-text-center u-font-bold">Draw</div>
-
-              <div className="u-text-3xl u-text-center">
-                {match.odds[match.odds.length - 1].draw}
-              </div>
-            </div>
+            <OddsBlock
+              betValue="Draw"
+              oddsValue={match.odds[match.odds.length - 1].draw}
+            />
           </div>
 
           <button className="u-w-5 u-h-5" onClick={handleToggleClick}>
