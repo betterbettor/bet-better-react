@@ -2,6 +2,7 @@
 
 import { ChangeEvent, FormEvent, useMemo, useState } from 'react';
 import MatchTiles from '../match-tiles';
+import SearchBar from './search-bar';
 import { MatchResponse } from '@/interfaces/match.interface';
 import { ExpandedMap, ExpandedMapStates } from '@/interfaces/ui.type';
 
@@ -68,21 +69,7 @@ const Dashboard = ({ matches }: DashboardProps) => {
 
   return (
     <div>
-      <form className="u-py-5 u-flex" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="u-py-3 u-px-7 u-flex-1 u-bg-green-300 u-rounded-l-full"
-          placeholder="Search for a team"
-          onChange={handleInputChange}
-        />
-
-        <button
-          className="u-py-3 u-px-7 u-bg-green-900 u-rounded-r-full"
-          type="submit"
-        >
-          Q
-        </button>
-      </form>
+      <SearchBar onChange={handleInputChange} onSubmit={handleSubmit} />
 
       <button
         className="u-block u-ml-auto u-mb-5 u-py-3 u-px-7 u-w-40 u-bg-green-900 u-rounded"
