@@ -20,16 +20,18 @@ const MatchTiles = ({
   return (
     <div className="u-py-5 u-px-7 u-bg-green-100 u-rounded-xl u-flex u-flex-col u-gap-5">
       <Suspense fallback={<Loading />}>
-        {!matches.length
-          ? 'No matches data found'
-          : matches.map((match, idx) => (
-              <MatchTile
-                key={`${idx}-${match.id}`}
-                match={match}
-                isExpanded={expandedMap.get(match.id) ?? false}
-                onToggleMatchTile={onToggleMatchTile}
-              />
-            ))}
+        {!matches.length ? (
+          <p className="u-text-slate-900 u-font-bold">No matches data found</p>
+        ) : (
+          matches.map((match, idx) => (
+            <MatchTile
+              key={`${idx}-${match.id}`}
+              match={match}
+              isExpanded={expandedMap.get(match.id) ?? false}
+              onToggleMatchTile={onToggleMatchTile}
+            />
+          ))
+        )}
       </Suspense>
     </div>
   );
