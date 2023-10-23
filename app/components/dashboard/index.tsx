@@ -63,9 +63,8 @@ const Dashboard = ({ matches }: DashboardProps) => {
     setKeyword(event.target.value);
   };
 
-  const handleSuggestionClicked = (suggestion: string) => {
+  const handleSuggestionClicked = (suggestion: string) => () =>
     setKeyword(suggestion);
-  };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

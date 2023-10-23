@@ -1,11 +1,12 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import SuggestionsList from './suggestions-list';
 
 interface SearchBarProps {
   value: string;
-  suggestions?: string[];
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  onSuggestionClicked?: (suggestion: string) => void;
-  onSubmit?: (event: FormEvent<HTMLFormElement>) => void;
+  suggestions: string[];
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onSuggestionClicked: (suggestion: string) => () => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 }
 
 const SearchBar = ({
@@ -17,10 +18,6 @@ const SearchBar = ({
 }: SearchBarProps) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
-
-  const handleSuggestionClick = (suggestion: string) => () => {
-    onSuggestionClicked && onSuggestionClicked(suggestion);
-  };
 
   const handleBlur = () => {
     if (!!timer) clearTimeout(timer);
@@ -49,19 +46,10 @@ const SearchBar = ({
         />
 
         {showSuggestions && (
-          <div className="u-py-3 u-px-7 u-absolute u-top-full u-left-0 u-max-w-full u-max-h-96 u-bg-slate-950/70 u-rounded-xl u-overflow-auto">
-            {!suggestions.length
-              ? 'No matching team'
-              : suggestions.map((suggestion) => (
-                  <p
-                    key={suggestion}
-                    className="u-opacity-70 u-cursor-pointer hover:u-opacity-90"
-                    onClick={handleSuggestionClick(suggestion)}
-                  >
-                    {suggestion}
-                  </p>
-                ))}
-          </div>
+          <SuggestionsList
+            suggestions={suggestions}
+            onSuggestionClicked={onSuggestionClicked}
+          />
         )}
       </div>
 
