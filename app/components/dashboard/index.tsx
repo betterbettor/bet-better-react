@@ -57,7 +57,7 @@ const Dashboard = ({ matches }: DashboardProps) => {
       </div>
 
       <button
-        className="u-block u-ml-auto u-mb-5 u-py-3 u-px-7 u-bg-green-900 u-rounded"
+        className="u-block u-ml-auto u-mb-5 u-py-3 u-px-7 u-w-40 u-bg-green-900 u-rounded"
         onClick={handleToggleAll}
       >
         {hasAllTilesExpanded ? 'Collapse' : 'Expand'} All
