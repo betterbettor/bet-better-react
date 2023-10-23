@@ -1,5 +1,5 @@
+import Dashboard from './dashboard';
 import MatchResponseData from '@/interfaces/response.interface';
-import Dashboard from './components/dashboard';
 
 async function fetchAllMatches(): Promise<MatchResponseData> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BET_BETTER_API}/matches`);
