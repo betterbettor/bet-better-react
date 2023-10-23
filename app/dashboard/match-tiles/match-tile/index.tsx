@@ -53,11 +53,13 @@ const MatchTile = ({
       </div>
 
       <div
-        className={`u-h-full u-bg-gray-800 u-text-white u-overflow-hidden u-transition-[max-height] ${
+        className={`u-h-full u-overflow-hidden u-transition-[max-height] ${
           isExpanded ? 'u-max-h-16' : 'u-max-h-0'
         }`}
       >
-        <p className="u-py-3 u-px-7">Expanded content</p>
+        <div className="u-py-3 u-px-7 u-bg-gray-800 u-text-white">
+          Expanded content
+        </div>
       </div>
     </div>
   );
