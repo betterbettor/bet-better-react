@@ -24,12 +24,28 @@ const Dashboard = ({ matches }: DashboardProps) => {
     return states;
   }, [matches]);
 
+  const allTeamNames = useMemo(() => {
+    const allTeamNamesSet = matches.reduce((teamsSet, match) => {
+      teamsSet.add(match.home.name);
+      teamsSet.add(match.away.name);
+      return teamsSet;
+    }, new Set<string>());
+
+    return Array.from(allTeamNamesSet);
+  }, [matches]);
+
   const [expandedMap, setExpandedMap] = useState(
     expandedMapStates.ALL_COLLAPSED,
   );
 
   const [keyword, setKeyword] = useState('');
   const [query, setQuery] = useState('');
+
+  const suggestedTeamNames = useMemo(() => {
+    return allTeamNames.filter((teamName) =>
+      teamName.toLowerCase().includes(keyword.toLowerCase().trim()),
+    );
+  }, [allTeamNames, keyword]);
 
   const hasAllTilesExpanded = useMemo(() => {
     return matches.every((match) => expandedMap.get(match.id));
@@ -45,6 +61,10 @@ const Dashboard = ({ matches }: DashboardProps) => {
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setKeyword(event.target.value);
+  };
+
+  const handleSuggestionClicked = (suggestion: string) => {
+    setKeyword(suggestion);
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -69,7 +89,13 @@ const Dashboard = ({ matches }: DashboardProps) => {
 
   return (
     <div>
-      <SearchBar onChange={handleInputChange} onSubmit={handleSubmit} />
+      <SearchBar
+        value={keyword}
+        suggestions={suggestedTeamNames}
+        onChange={handleInputChange}
+        onSuggestionClicked={handleSuggestionClicked}
+        onSubmit={handleSubmit}
+      />
 
       <button
         className="u-block u-ml-auto u-mb-5 u-py-3 u-px-7 u-w-40 u-bg-green-900 u-rounded"
