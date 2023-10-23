@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { MatchResponse } from '@/interfaces/match.interface';
+import DateInfo from './date-info';
 
 interface MatchTileProps {
   match: MatchResponse;
@@ -11,32 +12,12 @@ const MatchTile = ({
   isExpanded = false,
   onToggleMatchTile,
 }: MatchTileProps) => {
-  const dateTimeFormatOptions: Intl.DateTimeFormatOptions = {
-    dateStyle: 'medium',
-    timeStyle: 'short',
-  };
-
   const handleToggleClick = () => onToggleMatchTile(match.id);
 
   return (
     <div className="u-py-3 u-px-7 u-bg-green-50 u-rounded-xl u-border u-text-slate-900 u-shadow">
       <div>
-        <p className="u-text-xs u-flex u-justify-between">
-          <span>
-            Start Date:{' '}
-            {new Date(match.startTime).toLocaleString(
-              undefined,
-              dateTimeFormatOptions,
-            )}
-          </span>
-          <span>
-            Last updated:{' '}
-            {new Date(match.lastUpdated).toLocaleString(
-              undefined,
-              dateTimeFormatOptions,
-            )}
-          </span>
-        </p>
+        <DateInfo startTime={match.startTime} lastUpdated={match.lastUpdated} />
 
         <div className="u-flex u-items-center u-justify-between u-gap-3">
           <div className="u-flex-1 u-flex u-items-stretch u-justify-between u-gap-3">
