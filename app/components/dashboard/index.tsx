@@ -1,7 +1,7 @@
 'use client';
 
 import { ChangeEvent, FormEvent, useMemo, useState } from 'react';
-import MatchTiles from '../match-tiles';
+import MatchTiles from './match-tiles';
 import SearchBar from './search-bar';
 import { MatchResponse } from '@/interfaces/match.interface';
 import { ExpandedMap, ExpandedMapStates } from '@/interfaces/ui.type';
