@@ -1,6 +1,8 @@
 import DateInfo from './date-info';
 import OddsBlock from './odds-block';
 import ExpandableSection from './expandable-section';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import { MatchResponse } from '@/interfaces/match.interface';
 
 interface MatchTileProps {
@@ -47,7 +49,7 @@ const MatchTile = ({
                 isExpanded ? 'u-rotate-180' : 'u-rotate-0'
               }`}
             >
-              V
+              <FontAwesomeIcon icon={faCaretDown} size="2xl" />
             </p>
           </button>
         </div>
