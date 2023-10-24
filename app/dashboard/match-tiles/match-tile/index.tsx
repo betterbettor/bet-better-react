@@ -1,13 +1,14 @@
-import Image from 'next/image';
-import { MatchResponse } from '@/interfaces/match.interface';
 import DateInfo from './date-info';
 import OddsBlock from './odds-block';
+import ExpandableSection from './expandable-section';
+import { MatchResponse } from '@/interfaces/match.interface';
 
 interface MatchTileProps {
   match: MatchResponse;
   isExpanded: boolean;
   onToggleMatchTile: (matchId: number) => void;
 }
+
 const MatchTile = ({
   match,
   isExpanded = false,
@@ -52,15 +53,11 @@ const MatchTile = ({
         </div>
       </div>
 
-      <div
-        className={`u-h-full u-overflow-hidden u-transition-[max-height] ${
-          isExpanded ? 'u-max-h-16' : 'u-max-h-0'
-        }`}
-      >
+      <ExpandableSection isExpanded={isExpanded}>
         <div className="u-py-3 u-px-7 u-bg-gray-800 u-text-white">
           Expanded content
         </div>
-      </div>
+      </ExpandableSection>
     </div>
   );
 };
