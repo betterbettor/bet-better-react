@@ -1,6 +1,7 @@
 import DateInfo from './date-info';
 import OddsBlock from './odds-block';
 import ExpandableSection from './expandable-section';
+import MultiLineChart from '@/app/chart/multiline-chart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import { MatchResponse } from '@/interfaces/match.interface';
@@ -60,6 +61,7 @@ const MatchTile = ({
           Expanded content
         </div>
       </ExpandableSection>
+      <MultiLineChart data={match.odds} />
     </div>
   );
 };
