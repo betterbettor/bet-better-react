@@ -44,13 +44,13 @@ const MatchTile = ({
           </div>
 
           <button className="u-w-5 u-h-5" onClick={handleToggleClick}>
-            <p
+            <FontAwesomeIcon
               className={`u-text-green-600 u-font-bold u-transition-transform ${
                 isExpanded ? 'u-rotate-180' : 'u-rotate-0'
               }`}
-            >
-              <FontAwesomeIcon icon={faCaretDown} size="2xl" />
-            </p>
+              icon={faCaretDown}
+              size="2xl"
+            />
           </button>
         </div>
       </div>
