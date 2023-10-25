@@ -17,6 +17,7 @@
     "d3": "^7.8.5",
     "next": "13.5.4",
     "react": "^18",
+    "react-datepicker": "^4.21.0",
     "react-dom": "^18",
     "sharp": "^0.32.6"
   },
@@ -24,6 +25,7 @@
     "@types/d3": "^7.4.2",
     "@types/node": "^20",
     "@types/react": "^18",
+    "@types/react-datepicker": "^4.19.1",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.16",
     "eslint": "^8",
