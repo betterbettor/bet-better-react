@@ -1,13 +1,13 @@
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Loading from './loading';
-import { MatchResponse } from '@/interfaces/match.interface';
+import { Match } from '@/interfaces/match.interface';
 import { ExpandedMap } from '@/interfaces/ui.type';
 
 const MatchTile = dynamic(() => import('./match-tile'), { ssr: false });
 
 interface MatchTilesProps {
-  matches?: MatchResponse[];
+  matches?: Match[];
   expandedMap: ExpandedMap;
   onToggleMatchTile: (matchId: number) => void;
 }

@@ -4,8 +4,6 @@ export interface ResponseData {
   code: number;
 }
 
-interface MatchResponseData extends ResponseData {
+export interface MatchResponseData extends ResponseData {
   matches: MatchResponse[];
 }
-
-export default MatchResponseData;
