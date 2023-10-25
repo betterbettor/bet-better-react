@@ -115,7 +115,11 @@ const Dashboard = ({ matches }: DashboardProps) => {
           <DatePicker startDate={startDate} onChange={handleChangeDate} />
         </div>
         <button
-          className="u-block sm:u-ml-auto u-py-3 u-px-7 u-w-40 u-bg-green-900 u-rounded"
+          className={`u-block sm:u-ml-auto u-py-3 u-px-7 u-w-40 ${
+            hasAllTilesExpanded
+              ? 'u-bg-green-600'
+              : 'u-bg-green-300 u-text-black'
+          } u-rounded`}
           onClick={handleToggleAll}
         >
           {hasAllTilesExpanded ? 'Collapse' : 'Expand'} All
