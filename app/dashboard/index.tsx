@@ -6,6 +6,8 @@ import SearchBar from './search-bar';
 import DatePicker from './date-picker';
 import { MatchResponse } from '@/interfaces/match.interface';
 import { ExpandedMap, ExpandedMapStates } from '@/interfaces/ui.type';
+import Image from 'next/image';
+import { leagueLogoUrl, leagueName } from '../utils/constants';
 
 interface DashboardProps {
   matches: MatchResponse[];
@@ -110,7 +112,16 @@ const Dashboard = ({ matches }: DashboardProps) => {
       />
 
       <div className="u-grid u-gap-3 sm:u-grid-cols-[1fr_auto_1fr] u-mb-5 u-items-center u-justify-items-center u-basis-full">
-        <div>League</div>
+        <div className="u-flex u-flex-row u-items-center u-gap-2">
+          <Image
+            className="u-bg-white u-rounded-full u-p-1"
+            src={leagueLogoUrl}
+            alt={leagueName}
+            width={50}
+            height={50}
+          />{' '}
+          <div>{leagueName}</div>
+        </div>
         <div>
           <DatePicker startDate={startDate} onChange={handleChangeDate} />
         </div>
