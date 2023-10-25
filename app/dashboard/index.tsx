@@ -61,6 +61,13 @@ const Dashboard = ({ matches }: DashboardProps) => {
     );
   }, [matches, query]);
 
+  const matchesFilteredByDate = useMemo(() => {
+    return matches.filter(
+      (match) =>
+        new Date(match.startTime).toDateString() === startDate.toDateString(),
+    );
+  }, [matches, startDate]);
+
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setKeyword(event.target.value);
   };
@@ -116,7 +123,7 @@ const Dashboard = ({ matches }: DashboardProps) => {
       </div>
 
       <MatchTiles
-        matches={filteredMatches}
+        matches={matchesFilteredByDate}
         expandedMap={expandedMap}
         onToggleMatchTile={handleToggleMatchTile}
       />
