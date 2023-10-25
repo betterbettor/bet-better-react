@@ -21,9 +21,7 @@ const MultiLineChart = ({
 }: MultiLineChartProps) => {
   const scaleX = scaleUtc()
     .domain(
-      extent(data, ({ timestamp }) => new Date(timestamp)).map(
-        (value) => value ?? 0,
-      ),
+      extent(data, ({ timestamp }) => timestamp).map((value) => value ?? 0),
     )
     .range([margin, width - margin]);
 
