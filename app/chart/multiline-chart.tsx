@@ -1,6 +1,7 @@
 import { scaleUtc, scaleLinear, extent } from 'd3';
 import AxisBottom from './axis-bottom';
 import AxisLeft from './axis-left';
+import Legend, { LegendItem } from './legend';
 import Line from './line';
 import DataPoints from './data-points';
 import { OddsValues } from '@/interfaces/odds.interface';
@@ -26,15 +27,23 @@ const MultiLineChart = ({
     )
     .range([margin, width - margin]);
 
+  const SCALE_Y_MULTIPLIER = 1.1;
+
   const scaleY = scaleLinear()
     .domain([
       0,
       Math.max(
         ...data.map(({ home, away, draw }) => Math.max(home, away, draw)),
-      ),
+      ) * SCALE_Y_MULTIPLIER,
     ])
     .nice()
     .range([height - margin, margin]);
+
+  const legendItems: LegendItem[] = [
+    { key: 'home', label: 'Home', color: 'green' },
+    { key: 'away', label: 'Away', color: 'red' },
+    { key: 'draw', label: 'Draw', color: 'gold' },
+  ];
 
   return (
     <svg
@@ -45,6 +54,8 @@ const MultiLineChart = ({
       <AxisBottom scaleX={scaleX} transform={`translate(0, ${height})`} />
 
       <AxisLeft scaleY={scaleY} />
+
+      <Legend items={legendItems} x={margin} />
 
       <Line
         stroke="green"
