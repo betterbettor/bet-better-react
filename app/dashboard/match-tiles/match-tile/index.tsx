@@ -5,6 +5,7 @@ import ExpandableSection from './expandable-section';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import { Match } from '@/interfaces/match.interface';
+import { LineItem } from '@/interfaces/ui.type';
 
 const MultiLineChart = dynamic(() => import('@/app/chart/multiline-chart'), {
   ssr: false,
@@ -15,6 +16,12 @@ interface MatchTileProps {
   isExpanded: boolean;
   onToggleMatchTile: (matchId: number) => void;
 }
+
+const lineItems: LineItem[] = [
+  { key: 'home', label: 'Home', color: 'green' },
+  { key: 'away', label: 'Away', color: 'red' },
+  { key: 'draw', label: 'Draw', color: 'gold' },
+];
 
 const MatchTile = ({
   match,
@@ -62,7 +69,11 @@ const MatchTile = ({
 
       <ExpandableSection isExpanded={isExpanded}>
         <div className="u-p-4 u-bg-gray-800 u-text-white u-rounded u-overflow-auto sm:u-p-5 md:u-p-10">
-          <MultiLineChart data={match.odds} />
+          <MultiLineChart
+            data={match.odds}
+            xKey="timestamp"
+            lineItems={lineItems}
+          />
         </div>
       </ExpandableSection>
     </div>

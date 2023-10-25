@@ -1,14 +1,9 @@
-import { line } from 'd3';
 import { SVGProps } from 'react';
-
-export type LegendItem = {
-  key: string;
-  label: string;
-  color?: string;
-};
+import { line } from 'd3';
+import { LineItem } from '@/interfaces/ui.type';
 
 interface LegendProps extends SVGProps<SVGSVGElement> {
-  items: LegendItem[];
+  items: LineItem[];
   pathLength?: number;
   margin?: number;
   itemHeight?: number;
