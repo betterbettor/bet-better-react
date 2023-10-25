@@ -13,11 +13,11 @@ interface CustomDisplayProps {
 
 const CustomDisplay = ({
   date,
-  onClick,
   ref,
   startDate,
   minDate,
   maxDate,
+  onClick,
   onChange,
 }: CustomDisplayProps) => {
   const now = new Date();
@@ -51,7 +51,7 @@ const CustomDisplay = ({
   const formattedDate = getFormattedDate(date);
 
   return (
-    <>
+    <div className="u-flex u-justify-between u-items-center u-text-yellow-300 u-text-center u-rounded-lg u-w-48 md:u-w-96">
       <StepBtn
         increment={false}
         startDate={startDate}
@@ -71,7 +71,7 @@ const CustomDisplay = ({
         maxDate={maxDate}
         onChange={onChange}
       />
-    </>
+    </div>
   );
 };
 

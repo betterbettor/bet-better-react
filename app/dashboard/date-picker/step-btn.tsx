@@ -34,13 +34,13 @@ const StepBtn = ({
 
   return (
     <button
-      className="u-w-5 u-h-5"
+      className="u-h-full "
       onClick={() => onChange(new Date(newDate))}
       disabled={disabled}
     >
       <FontAwesomeIcon
         className={`${
-          disabled ? 'u-text-green-200' : 'u-text-green-600'
+          disabled ? 'u-text-green-100' : 'u-text-green-300'
         }  u-font-bold ${increment ? 'u--rotate-90' : 'u-rotate-90'}`}
         icon={faCaretDown}
         size="2xl"

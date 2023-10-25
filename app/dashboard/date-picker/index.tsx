@@ -1,4 +1,4 @@
-import React, { createElement, forwardRef, useState } from 'react';
+import React, { createElement, forwardRef } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import CustomDisplay from './custom-display';
@@ -34,7 +34,7 @@ const DatePicker = ({ startDate, onChange }: DatePickerProps) => {
 
   return (
     <ReactDatePicker
-      className="u-bg-green-50 u-text-black u-text-center u-rounded-lg"
+      className="u-bg-green-50 u-text-black u-text-center u-rounded-lg u-w-[460px]"
       closeOnScroll={true}
       minDate={new Date(minDate)}
       maxDate={new Date(maxDate)}
