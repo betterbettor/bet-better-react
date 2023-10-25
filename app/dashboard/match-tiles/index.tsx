@@ -18,7 +18,7 @@ const MatchTiles = ({
   onToggleMatchTile,
 }: MatchTilesProps) => {
   return (
-    <div className="u-py-5 u-px-7 u-bg-green-100 u-rounded-xl u-flex u-flex-col u-gap-5">
+    <div className="u-p-3 u-bg-green-100 u-rounded-xl u-flex u-flex-col u-gap-3 sm:u-py-5 sm:u-px-7 sm:u-gap-5">
       <Suspense fallback={<Loading />}>
         {!matches.length ? (
           <p className="u-text-slate-900 u-font-bold">No matches data found</p>
