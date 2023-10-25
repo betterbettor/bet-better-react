@@ -1,6 +1,6 @@
 interface DateInfoProps {
-  startTime: number;
-  lastUpdated: number;
+  startTime: Date;
+  lastUpdated: Date;
 }
 
 const DateInfo = ({ startTime, lastUpdated }: DateInfoProps) => {
@@ -12,12 +12,11 @@ const DateInfo = ({ startTime, lastUpdated }: DateInfoProps) => {
   return (
     <p className="u-text-xs u-flex u-justify-between u-gap-3 u-flex-wrap">
       <span>
-        Start Date:{' '}
-        {new Date(startTime).toLocaleString(undefined, dateTimeFormatOptions)}
+        Start Date: {startTime.toLocaleString(undefined, dateTimeFormatOptions)}
       </span>
       <span>
         Last updated:{' '}
-        {new Date(lastUpdated).toLocaleString(undefined, dateTimeFormatOptions)}
+        {lastUpdated.toLocaleString(undefined, dateTimeFormatOptions)}
       </span>
     </p>
   );

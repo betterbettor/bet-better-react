@@ -4,14 +4,14 @@ import OddsBlock from './odds-block';
 import ExpandableSection from './expandable-section';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
-import { MatchResponse } from '@/interfaces/match.interface';
+import { Match } from '@/interfaces/match.interface';
 
 const MultiLineChart = dynamic(() => import('@/app/chart/multiline-chart'), {
   ssr: false,
 });
 
 interface MatchTileProps {
-  match: MatchResponse;
+  match: Match;
   isExpanded: boolean;
   onToggleMatchTile: (matchId: number) => void;
 }

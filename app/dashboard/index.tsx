@@ -4,12 +4,12 @@ import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import MatchTiles from './match-tiles';
 import DatePicker from './date-picker';
-import { MatchResponse } from '@/interfaces/match.interface';
+import { Match } from '@/interfaces/match.interface';
 import { ExpandedMap, ExpandedMapStates } from '@/interfaces/ui.type';
 import { leagueLogoUrl, leagueName } from '../utils/constants';
 
 interface DashboardProps {
-  matches: MatchResponse[];
+  matches: Match[];
 }
 
 const Dashboard = ({ matches }: DashboardProps) => {
