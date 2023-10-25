@@ -1,10 +1,14 @@
+import dynamic from 'next/dynamic';
 import DateInfo from './date-info';
 import OddsBlock from './odds-block';
 import ExpandableSection from './expandable-section';
-import MultiLineChart from '@/app/chart/multiline-chart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import { MatchResponse } from '@/interfaces/match.interface';
+
+const MultiLineChart = dynamic(() => import('@/app/chart/multiline-chart'), {
+  ssr: false,
+});
 
 interface MatchTileProps {
   match: MatchResponse;
@@ -57,7 +61,7 @@ const MatchTile = ({
       </div>
 
       <ExpandableSection isExpanded={isExpanded}>
-        <div className="u-p-4 u-bg-gray-800 u-text-white u-overflow-auto sm:u-p-5 md:u-p-10">
+        <div className="u-p-4 u-bg-gray-800 u-text-white u-rounded u-overflow-auto sm:u-p-5 md:u-p-10">
           <MultiLineChart data={match.odds} />
         </div>
       </ExpandableSection>
