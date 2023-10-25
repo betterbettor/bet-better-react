@@ -12,7 +12,7 @@ const ExpandableSection = ({
   return (
     <div
       className={`u-h-full u-overflow-hidden u-transition-[max-height] ${
-        isExpanded ? 'u-max-h-16' : 'u-max-h-0'
+        isExpanded ? 'u-max-h-screen' : 'u-max-h-0'
       }`}
     >
       {children}

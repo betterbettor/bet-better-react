@@ -10,7 +10,7 @@ const DateInfo = ({ startTime, lastUpdated }: DateInfoProps) => {
   };
 
   return (
-    <p className="u-text-xs u-flex u-justify-between">
+    <p className="u-text-xs u-flex u-justify-between u-gap-3 u-flex-wrap">
       <span>
         Start Date:{' '}
         {new Date(startTime).toLocaleString(undefined, dateTimeFormatOptions)}

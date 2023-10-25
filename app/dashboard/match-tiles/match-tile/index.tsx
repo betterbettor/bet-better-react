@@ -20,12 +20,12 @@ const MatchTile = ({
   const handleToggleClick = () => onToggleMatchTile(match.id);
 
   return (
-    <div className="u-py-3 u-px-7 u-bg-green-50 u-rounded-xl u-border u-text-slate-900 u-shadow">
+    <div className="u-p-3 u-bg-green-50 u-rounded-xl u-border u-text-slate-900 u-shadow sm:u-py-5 sm:u-px-7">
       <div>
         <DateInfo startTime={match.startTime} lastUpdated={match.lastUpdated} />
 
         <div className="u-flex u-items-center u-justify-between u-gap-3">
-          <div className="u-flex-1 u-flex u-items-stretch u-justify-between u-gap-3">
+          <div className="u-flex-1 u-flex u-items-stretch u-justify-between u-flex-wrap u-gap-3">
             <OddsBlock
               betValue="Home"
               team={match.home}
@@ -57,11 +57,10 @@ const MatchTile = ({
       </div>
 
       <ExpandableSection isExpanded={isExpanded}>
-        <div className="u-py-3 u-px-7 u-bg-gray-800 u-text-white">
-          Expanded content
+        <div className="u-p-4 u-bg-gray-800 u-text-white u-overflow-auto sm:u-p-5 md:u-p-10">
+          <MultiLineChart data={match.odds} />
         </div>
       </ExpandableSection>
-      <MultiLineChart data={match.odds} />
     </div>
   );
 };

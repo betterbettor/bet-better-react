@@ -13,7 +13,7 @@ const Home = async () => {
   const { matches } = await fetchAllMatches();
 
   return (
-    <main className="u-py-7 u-px-9">
+    <main className="u-p-5 sm:u-py-7 sm:u-px-9">
       <h1 className="u-text-xl">BetBetter</h1>
 
       <Dashboard matches={matches} />
