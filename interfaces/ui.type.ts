@@ -15,3 +15,9 @@ export interface ChartDataProps<T> {
   scaleX: AxisBottomProps['scaleX'];
   scaleY: AxisLeftProps['scaleY'];
 }
+
+export type LineItem = {
+  key: string;
+  label: string;
+  color?: string;
+};
