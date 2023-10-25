@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEvent, useMemo, useState } from 'react';
 import MatchTiles from './match-tiles';
 import SearchBar from './search-bar';
+import DatePicker from './date-picker';
 import { MatchResponse } from '@/interfaces/match.interface';
 import { ExpandedMap, ExpandedMapStates } from '@/interfaces/ui.type';
 
@@ -40,6 +41,7 @@ const Dashboard = ({ matches }: DashboardProps) => {
 
   const [keyword, setKeyword] = useState('');
   const [query, setQuery] = useState('');
+  const [startDate, setStartDate] = useState<Date>(new Date());
 
   const suggestedTeamNames = useMemo(() => {
     return allTeamNames.filter((teamName) =>
@@ -86,6 +88,10 @@ const Dashboard = ({ matches }: DashboardProps) => {
     });
   };
 
+  const handleChangeDate = (date: Date | null) => {
+    if (date) setStartDate(date);
+  };
+
   return (
     <div>
       <SearchBar
@@ -96,12 +102,18 @@ const Dashboard = ({ matches }: DashboardProps) => {
         onSubmit={handleSubmit}
       />
 
-      <button
-        className="u-block u-ml-auto u-mb-5 u-py-3 u-px-7 u-w-40 u-bg-green-900 u-rounded"
-        onClick={handleToggleAll}
-      >
-        {hasAllTilesExpanded ? 'Collapse' : 'Expand'} All
-      </button>
+      <div className="u-grid u-gap-3 sm:u-grid-cols-[1fr_auto_1fr] u-mb-5 u-items-center u-justify-items-center u-basis-full">
+        <div>League</div>
+        <div>
+          <DatePicker startDate={startDate} onChange={handleChangeDate} />
+        </div>
+        <button
+          className="u-block sm:u-ml-auto u-py-3 u-px-7 u-w-40 u-bg-green-900 u-rounded"
+          onClick={handleToggleAll}
+        >
+          {hasAllTilesExpanded ? 'Collapse' : 'Expand'} All
+        </button>
+      </div>
 
       <MatchTiles
         matches={filteredMatches}
