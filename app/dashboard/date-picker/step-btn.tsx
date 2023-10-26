@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import { twentyFourHoursInMilliseconds } from '@/app/utils/constants';
@@ -29,11 +29,17 @@ const StepBtn = ({
     [maxDate, minDate],
   );
 
-  const diff = increment
-    ? twentyFourHoursInMilliseconds
-    : -twentyFourHoursInMilliseconds;
-  const newDate = new Date(startDate.getTime() + diff);
-  const disabled = isDateOutOfBound(newDate);
+  const newDate = useMemo(() => {
+    const diff = increment
+      ? twentyFourHoursInMilliseconds
+      : -twentyFourHoursInMilliseconds;
+    return new Date(startDate.getTime() + diff);
+  }, [increment, startDate]);
+
+  const disabled = useMemo(
+    () => isDateOutOfBound(newDate),
+    [isDateOutOfBound, newDate],
+  );
 
   return (
     <button onClick={() => onChange(new Date(newDate))} disabled={disabled}>
