@@ -9,9 +9,9 @@ import { LineItem } from '@/interfaces/ui.type';
 interface MultiLineChartProps<T> {
   data: T[];
   xKey: string;
-  key?: string;
   lineItems?: LineItem[];
   showLegend?: boolean;
+  chartKey?: string;
   width?: number;
   height?: number;
   margin?: number;
@@ -21,9 +21,9 @@ interface MultiLineChartProps<T> {
 const MultiLineChart = ({
   data,
   xKey,
-  key = '',
   lineItems = [],
   showLegend = true,
+  chartKey = '',
   width = 800,
   height = 400,
   margin = 20,
@@ -59,7 +59,7 @@ const MultiLineChart = ({
 
       {lineItems.map((lineItem) => (
         <Line
-          key={`line-${key}-${lineItem.key}`}
+          key={`line-${chartKey}-${lineItem.key}`}
           stroke={lineItem.color}
           data={data}
           xKey={xKey}
@@ -71,13 +71,14 @@ const MultiLineChart = ({
 
       {lineItems.map((lineItem) => (
         <DataPoints
-          key={`points-${key}-${lineItem.key}`}
+          key={`points-${chartKey}-${lineItem.key}`}
           data={data}
           xKey={xKey}
           yKey={lineItem.key}
           scaleX={scaleX}
           scaleY={scaleY}
           fill={lineItem.color}
+          chartKey={chartKey}
         />
       ))}
     </svg>
