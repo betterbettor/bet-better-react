@@ -112,15 +112,11 @@ const Dashboard = ({ matches }: DashboardProps) => {
       />
 
       <div className="u-grid u-gap-3 sm:u-grid-cols-[1fr_auto_1fr] u-mb-5 u-items-center u-justify-items-center u-basis-full">
-        <div className="u-flex u-flex-row u-items-center u-gap-2">
-          <Image
-            className="u-bg-white u-rounded-full u-p-1"
-            src={leagueLogoUrl}
-            alt={leagueName}
-            width={50}
-            height={50}
-          />{' '}
-          <div>{leagueName}</div>
+        <div className="u-w-full sm:u-w-56 u-h-fit u-flex u-flex-row u-items-center u-justify-center u-gap-2 u-p-1 u-bg-green-100 u-rounded-3xl sm:u-mr-auto">
+          <Image src={leagueLogoUrl} alt={leagueName} width={70} height={70} />{' '}
+          <div className="u-font-bold u-text-3xl u-text-[#3D195B]">
+            {leagueName}
+          </div>
         </div>
         <div>
           <DatePicker startDate={startDate} onChange={handleChangeDate} />
