@@ -23,7 +23,7 @@ const DatePicker = ({ startDate, onChange }: DatePickerProps) => {
       <CustomDisplay
         date={new Date(value as string)}
         onClick={onClick}
-        ref={ref}
+        pickerRef={ref}
         startDate={startDate}
         minDate={minDate}
         maxDate={maxDate}

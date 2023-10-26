@@ -3,7 +3,7 @@ import StepBtn from './step-btn';
 
 interface CustomDisplayProps {
   date: Date;
-  ref: React.Ref<HTMLButtonElement>;
+  pickerRef: React.Ref<HTMLButtonElement>;
   startDate: Date;
   minDate: Date;
   maxDate: Date;
@@ -13,7 +13,7 @@ interface CustomDisplayProps {
 
 const CustomDisplay = ({
   date,
-  ref,
+  pickerRef,
   startDate,
   minDate,
   maxDate,
@@ -59,7 +59,7 @@ const CustomDisplay = ({
         maxDate={maxDate}
         onChange={onChange}
       />
-      <button className="custom-input" onClick={onClick} ref={ref}>
+      <button className="custom-input" onClick={onClick} ref={pickerRef}>
         {readableDate === null
           ? formattedDate
           : `${readableDate}, ${formattedDate}`}
