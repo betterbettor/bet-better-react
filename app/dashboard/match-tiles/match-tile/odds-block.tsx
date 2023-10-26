@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { BetValue, OddsValues } from '@/interfaces/odds.interface';
+import Team from '@/interfaces/team.interface';
 
 interface OddsBlockProps {
   betValue: BetValue;
   oddsValue: OddsValues[Lowercase<BetValue>];
-  team?: { name: string; logo: string };
+  team?: Pick<Team, 'name' | 'logo'>;
 }
 
 const OddsBlock = ({ betValue, oddsValue, team }: OddsBlockProps) => {
