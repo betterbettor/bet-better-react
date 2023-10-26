@@ -1,8 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Jost } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const jost = Jost({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Bet Better',
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`u-bg-green-950 ${inter.className}`}
+        className={`u-min-h-screen u-bg-green-950 ${jost.className}`}
         suppressHydrationWarning
       >
         {children}
