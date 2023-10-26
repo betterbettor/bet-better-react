@@ -1,4 +1,4 @@
-import React from 'react';
+import { useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import { twentyFourHoursInMilliseconds } from '@/app/utils/constants';
@@ -18,13 +18,16 @@ const StepBtn = ({
   maxDate,
   onChange,
 }: StepBtnProps) => {
-  const isDateOutOfBound = (date: Date): boolean => {
-    const dateInDay = new Date(date.toDateString()).getTime();
-    const minDateInDay = new Date(minDate.toDateString()).getTime();
-    const maxDateInDay = new Date(maxDate.toDateString()).getTime();
+  const isDateOutOfBound = useCallback(
+    (date: Date): boolean => {
+      const dateInDay = new Date(date.toDateString()).getTime();
+      const minDateTime = minDate.getTime();
+      const maxDateTime = maxDate.getTime();
 
-    return dateInDay < minDateInDay || dateInDay > maxDateInDay;
-  };
+      return dateInDay < minDateTime || dateInDay > maxDateTime;
+    },
+    [maxDate, minDate],
+  );
 
   const diff = increment
     ? twentyFourHoursInMilliseconds
@@ -33,11 +36,7 @@ const StepBtn = ({
   const disabled = isDateOutOfBound(newDate);
 
   return (
-    <button
-      className="u-h-full "
-      onClick={() => onChange(new Date(newDate))}
-      disabled={disabled}
-    >
+    <button onClick={() => onChange(new Date(newDate))} disabled={disabled}>
       <FontAwesomeIcon
         className={`${
           disabled ? 'u-text-green-100' : 'u-text-green-300'

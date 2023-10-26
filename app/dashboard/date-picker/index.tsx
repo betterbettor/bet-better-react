@@ -1,8 +1,8 @@
-import React, { createElement, forwardRef } from 'react';
+import { HTMLProps, Ref, createElement, forwardRef, useCallback } from 'react';
 import ReactDatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import CustomDisplay from './custom-display';
 import { sevenDaysInMilliseconds } from '@/app/utils/constants';
+import 'react-datepicker/dist/react-datepicker.css';
 
 interface DatePickerProps {
   startDate: Date;
@@ -11,13 +11,23 @@ interface DatePickerProps {
 
 const DatePicker = ({ startDate, onChange }: DatePickerProps) => {
   const now = new Date();
+  const getDayFromDateInMilliseconds = useCallback(
+    (dateInMilliseconds: number) => {
+      return new Date(new Date(dateInMilliseconds).toDateString());
+    },
+    [],
+  );
 
-  const minDate = new Date(now.getTime() - sevenDaysInMilliseconds);
-  const maxDate = new Date(now.getTime() + 2 * sevenDaysInMilliseconds);
+  const minDate = getDayFromDateInMilliseconds(
+    now.getTime() - sevenDaysInMilliseconds,
+  );
+  const maxDate = getDayFromDateInMilliseconds(
+    now.getTime() + 2 * sevenDaysInMilliseconds,
+  );
 
   const CustomInput = (
-    { value, onClick }: React.HTMLProps<HTMLButtonElement>,
-    ref: React.Ref<HTMLButtonElement>,
+    { value, onClick }: HTMLProps<HTMLButtonElement>,
+    ref: Ref<HTMLButtonElement>,
   ) => {
     return (
       <CustomDisplay
@@ -36,8 +46,8 @@ const DatePicker = ({ startDate, onChange }: DatePickerProps) => {
     <ReactDatePicker
       className="u-bg-green-50 u-text-black u-text-center u-rounded-lg u-w-[460px]"
       closeOnScroll={true}
-      minDate={new Date(minDate)}
-      maxDate={new Date(maxDate)}
+      minDate={minDate}
+      maxDate={maxDate}
       selected={startDate}
       onChange={onChange}
       customInput={createElement(forwardRef(CustomInput))}
