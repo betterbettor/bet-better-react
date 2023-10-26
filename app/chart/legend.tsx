@@ -38,7 +38,7 @@ const Legend = ({
     <svg className="u-w-fit u-h-full" {...props}>
       {items.map((item, idx) => (
         <g
-          key={item.key}
+          key={`legend-${item.key}`}
           fill={item.color}
           className="u-opacity-70 hover:u-opacity-90"
         >

@@ -73,6 +73,7 @@ const MatchTile = ({
             data={match.odds}
             xKey="timestamp"
             lineItems={lineItems}
+            key={match.id.toString()}
           />
         </div>
       </ExpandableSection>
