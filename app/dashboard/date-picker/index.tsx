@@ -6,10 +6,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 interface DatePickerProps {
   startDate: Date;
+  className?: string;
   onChange: (date: Date | null) => void;
 }
 
-const DatePicker = ({ startDate, onChange }: DatePickerProps) => {
+const DatePicker = ({ className, startDate, onChange }: DatePickerProps) => {
   const now = new Date();
   const getDayFromDateInMilliseconds = useCallback(
     (dateInMilliseconds: number) => {
@@ -43,15 +44,17 @@ const DatePicker = ({ startDate, onChange }: DatePickerProps) => {
   };
 
   return (
-    <ReactDatePicker
-      className="u-bg-green-50 u-text-black u-text-center u-rounded-lg u-w-[460px]"
-      closeOnScroll={true}
-      minDate={minDate}
-      maxDate={maxDate}
-      selected={startDate}
-      onChange={onChange}
-      customInput={createElement(forwardRef(CustomInput))}
-    />
+    <div className={className}>
+      <ReactDatePicker
+        wrapperClassName="u-w-full"
+        closeOnScroll={true}
+        minDate={minDate}
+        maxDate={maxDate}
+        selected={startDate}
+        onChange={onChange}
+        customInput={createElement(forwardRef(CustomInput))}
+      />
+    </div>
   );
 };
 

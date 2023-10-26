@@ -52,7 +52,7 @@ const CustomDisplay = ({
   const formattedDate = getFormattedDate(date);
 
   return (
-    <div className="u-flex u-justify-between u-items-center u-text-yellow-300 u-text-center u-rounded-lg u-w-48 md:u-w-96">
+    <div className="u-flex u-justify-between u-items-center u-gap-3 u-text-yellow-400 u-text-center u-rounded-lg">
       <StepBtn
         increment={false}
         startDate={startDate}
