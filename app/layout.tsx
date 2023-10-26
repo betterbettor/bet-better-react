@@ -16,7 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`u-min-h-screen u-bg-green-950 ${inter.className}`}>
+      <body
+        className={`u-bg-green-950 ${inter.className}`}
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>

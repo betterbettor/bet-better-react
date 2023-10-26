@@ -21,7 +21,7 @@ const Home = async () => {
   const matches = await fetchAllMatches();
 
   return (
-    <main className="u-p-5 sm:u-py-7 sm:u-px-9">
+    <main className="u-p-5 u-min-h-screen sm:u-py-7 sm:u-px-9">
       <h1 className="u-mb-5 u-text-3xl u-text-yellow-400 u-font-bold sm:u-text-5xl sm:u-text-center">
         BetBetter
       </h1>
