@@ -33,7 +33,9 @@ const Dashboard = ({ matches }: DashboardProps) => {
   const [startDate, setStartDate] = useState<Date>(new Date());
 
   const hasAllTilesExpanded = useMemo(() => {
-    return matches.every((match) => expandedMap.get(match.id));
+    return (
+      !!matches.length && matches.every((match) => expandedMap.get(match.id))
+    );
   }, [expandedMap, matches]);
 
   const matchesFilteredByDate = useMemo(() => {
@@ -83,6 +85,7 @@ const Dashboard = ({ matches }: DashboardProps) => {
               : 'u-bg-green-300 u-text-black'
           }`}
           onClick={handleToggleAll}
+          disabled={!matches.length}
         >
           {hasAllTilesExpanded ? 'Collapse' : 'Expand'} All
         </button>
