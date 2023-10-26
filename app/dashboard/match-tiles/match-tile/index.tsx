@@ -44,14 +44,14 @@ const MatchTile = ({
             />
 
             <OddsBlock
-              betValue="Away"
-              team={match.away}
-              oddsValue={match.odds[match.odds.length - 1].away}
+              betValue="Draw"
+              oddsValue={match.odds[match.odds.length - 1].draw}
             />
 
             <OddsBlock
-              betValue="Draw"
-              oddsValue={match.odds[match.odds.length - 1].draw}
+              betValue="Away"
+              team={match.away}
+              oddsValue={match.odds[match.odds.length - 1].away}
             />
           </div>
 
