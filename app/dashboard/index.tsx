@@ -66,20 +66,22 @@ const Dashboard = ({ matches }: DashboardProps) => {
 
   return (
     <div>
-      <div className="u-grid u-gap-3 sm:u-grid-cols-[1fr_auto_1fr] u-mb-5 u-items-center u-justify-items-center u-basis-full">
-        <div className="u-w-full sm:u-w-56 u-h-fit u-flex u-flex-row u-items-center u-justify-center u-gap-2 u-p-1 u-bg-green-100 u-rounded-3xl sm:u-mr-auto">
+      <div className="u-mb-5 u-flex u-flex-col u-gap-3 u-items-stretch sm:u-flex-row sm:u-justify-between sm:u-items-center">
+        <div className="u-w-full u-h-fit u-flex u-flex-row u-items-center u-justify-center u-gap-2 u-p-1 u-bg-green-100 u-rounded-3xl sm:u-w-56">
           <Image src={leagueLogoUrl} alt={leagueName} width={70} height={70} />{' '}
           <div className="u-font-bold u-text-3xl u-text-[#3D195B]">
             {leagueName}
           </div>
         </div>
 
-        <div>
-          <DatePicker startDate={startDate} onChange={handleChangeDate} />
-        </div>
+        <DatePicker
+          className="sm:u-basis-64"
+          startDate={startDate}
+          onChange={handleChangeDate}
+        />
 
         <button
-          className={`u-block sm:u-ml-auto u-py-3 u-px-7 u-w-40 u-rounded ${
+          className={`u-block u-py-3 u-px-7 u-rounded sm:u-w-40 ${
             hasAllTilesExpanded
               ? 'u-bg-green-600'
               : 'u-bg-green-300 u-text-black'
