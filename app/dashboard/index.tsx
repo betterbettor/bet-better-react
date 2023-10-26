@@ -27,41 +27,41 @@ const Dashboard = ({ matches }: DashboardProps) => {
     return states;
   }, [matches]);
 
-  const allTeamNames = useMemo(() => {
-    const allTeamNamesSet = matches.reduce((teamsSet, match) => {
-      teamsSet.add(match.home.name);
-      teamsSet.add(match.away.name);
-      return teamsSet;
-    }, new Set<string>());
+  // const allTeamNames = useMemo(() => {
+  //   const allTeamNamesSet = matches.reduce((teamsSet, match) => {
+  //     teamsSet.add(match.home.name);
+  //     teamsSet.add(match.away.name);
+  //     return teamsSet;
+  //   }, new Set<string>());
 
-    return Array.from(allTeamNamesSet).sort();
-  }, [matches]);
+  //   return Array.from(allTeamNamesSet).sort();
+  // }, [matches]);
 
   const [expandedMap, setExpandedMap] = useState(
     expandedMapStates.ALL_COLLAPSED,
   );
 
-  const [keyword, setKeyword] = useState('');
-  const [query, setQuery] = useState('');
+  // const [keyword, setKeyword] = useState('');
+  // const [query, setQuery] = useState('');
   const [startDate, setStartDate] = useState<Date>(new Date());
 
-  const suggestedTeamNames = useMemo(() => {
-    return allTeamNames.filter((teamName) =>
-      teamName.toLowerCase().includes(keyword.toLowerCase().trim()),
-    );
-  }, [allTeamNames, keyword]);
+  // const suggestedTeamNames = useMemo(() => {
+  //   return allTeamNames.filter((teamName) =>
+  //     teamName.toLowerCase().includes(keyword.toLowerCase().trim()),
+  //   );
+  // }, [allTeamNames, keyword]);
 
   const hasAllTilesExpanded = useMemo(() => {
     return matches.every((match) => expandedMap.get(match.id));
   }, [expandedMap, matches]);
 
-  const filteredMatches = useMemo(() => {
-    return matches.filter(
-      (match) =>
-        match.home.name.toLowerCase().includes(query) ||
-        match.away.name.toLowerCase().includes(query),
-    );
-  }, [matches, query]);
+  // const filteredMatches = useMemo(() => {
+  //   return matches.filter(
+  //     (match) =>
+  //       match.home.name.toLowerCase().includes(query) ||
+  //       match.away.name.toLowerCase().includes(query),
+  //   );
+  // }, [matches, query]);
 
   const matchesFilteredByDate = useMemo(() => {
     return matches.filter(
@@ -70,17 +70,17 @@ const Dashboard = ({ matches }: DashboardProps) => {
     );
   }, [matches, startDate]);
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setKeyword(event.target.value);
-  };
+  // const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setKeyword(event.target.value);
+  // };
 
-  const handleSuggestionClicked = (suggestion: string) => () =>
-    setKeyword(suggestion);
+  // const handleSuggestionClicked = (suggestion: string) => () =>
+  //   setKeyword(suggestion);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setQuery(keyword.toLowerCase().trim());
-  };
+  // const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   setQuery(keyword.toLowerCase().trim());
+  // };
 
   const handleToggleAll = () => {
     setExpandedMap(
