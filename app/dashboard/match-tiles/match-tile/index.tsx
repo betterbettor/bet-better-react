@@ -5,7 +5,8 @@ import ExpandableSection from './expandable-section';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown';
 import { Match } from '@/interfaces/match.interface';
-import { LineItem } from '@/interfaces/ui.type';
+import { BetValue } from '@/interfaces/odds.interface';
+import { lineItems } from '@/app/utils/constants';
 
 const MultiLineChart = dynamic(() => import('@/app/chart/multiline-chart'), {
   ssr: false,
@@ -16,12 +17,6 @@ interface MatchTileProps {
   isExpanded: boolean;
   onToggleMatchTile: (matchId: number) => void;
 }
-
-const lineItems: LineItem[] = [
-  { key: 'home', label: 'Home', color: 'green' },
-  { key: 'away', label: 'Away', color: 'red' },
-  { key: 'draw', label: 'Draw', color: 'gold' },
-];
 
 const MatchTile = ({
   match,
@@ -41,26 +36,26 @@ const MatchTile = ({
 
         <div className="u-flex u-flex-col u-justify-between u-items-stretch sm:u-flex-row">
           <div className="u-flex-1 u-flex u-flex-col u-items-stretch u-justify-between u-flex-wrap u-gap-2 sm:u-flex-row sm:u-gap-3">
-            <OddsBlock
-              betValue="Home"
-              team={match.home}
-              oddsValue={match.odds[match.odds.length - 1].home}
-            />
+            {lineItems.map((lineItem, idx) => (
+              <div key={lineItem.key} className="u-contents">
+                {!!idx && (
+                  <div className="u-hidden u-border u-border-green-300 sm:u-inline" />
+                )}
 
-            <div className="u-hidden u-border u-border-green-300 sm:u-inline" />
-
-            <OddsBlock
-              betValue="Draw"
-              oddsValue={match.odds[match.odds.length - 1].draw}
-            />
-
-            <div className="u-hidden u-border u-border-green-300 sm:u-inline" />
-
-            <OddsBlock
-              betValue="Away"
-              team={match.away}
-              oddsValue={match.odds[match.odds.length - 1].away}
-            />
+                <OddsBlock
+                  betValue={lineItem.label as BetValue}
+                  oddsValue={
+                    match.odds[match.odds.length - 1][
+                      lineItem.key as Lowercase<BetValue>
+                    ]
+                  }
+                  team={
+                    match[lineItem.key as Lowercase<BetValue> & keyof Match]
+                  }
+                  color={lineItem.color}
+                />
+              </div>
+            ))}
           </div>
 
           <button className="u-px-2" onClick={handleToggleClick}>
