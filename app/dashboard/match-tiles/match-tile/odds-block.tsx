@@ -6,9 +6,15 @@ interface OddsBlockProps {
   betValue: BetValue;
   oddsValue: OddsValues[Lowercase<BetValue>];
   team?: Pick<Team, 'name' | 'logo'>;
+  color?: string;
 }
 
-const OddsBlock = ({ betValue, oddsValue, team }: OddsBlockProps) => {
+const OddsBlock = ({
+  betValue,
+  oddsValue,
+  team,
+  color = '',
+}: OddsBlockProps) => {
   return (
     <div className="u-min-h-[40px] u-flex-1 u-flex u-justify-between u-items-center u-gap-1 sm:u-flex-col">
       <div className="u-w-11 u-text-sm u-font-bold sm:u-text-center">
@@ -24,7 +30,9 @@ const OddsBlock = ({ betValue, oddsValue, team }: OddsBlockProps) => {
         </div>
       )}
 
-      <div className="u-text-3xl u-text-end sm:u-text-4xl">{oddsValue}</div>
+      <div className="u-text-3xl u-text-end sm:u-text-4xl" style={{ color }}>
+        {oddsValue}
+      </div>
     </div>
   );
 };
