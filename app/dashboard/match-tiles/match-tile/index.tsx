@@ -31,7 +31,7 @@ const MatchTile = ({
   const handleToggleClick = () => onToggleMatchTile(match.id);
 
   return (
-    <div className="u-p-3 u-bg-green-50 u-rounded-xl u-border u-text-slate-900 u-shadow sm:u-py-5 sm:u-px-7">
+    <div className="u-flex u-flex-col u-gap-4 u-p-3 u-bg-green-50 u-rounded-xl u-border u-text-slate-900 u-shadow sm:u-py-5 sm:u-px-7">
       <div>
         <DateInfo startTime={match.startTime} lastUpdated={match.lastUpdated} />
 
