@@ -3,7 +3,9 @@ import { MatchResponseData } from '@/interfaces/response.interface';
 import { Match, parseMatch } from '@/interfaces/match.interface';
 
 async function fetchAllMatches(): Promise<Match[]> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BET_BETTER_API}/matches`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BET_BETTER_API}/matches`, {
+    next: { revalidate: 3600 },
+  });
 
   if (!res.ok) {
     console.error('Failed to fetch data');
