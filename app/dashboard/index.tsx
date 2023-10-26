@@ -1,11 +1,11 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Image from 'next/image';
 import MatchTiles from './match-tiles';
 import DatePicker from './date-picker';
 import { MatchResponse } from '@/interfaces/match.interface';
 import { ExpandedMap, ExpandedMapStates } from '@/interfaces/ui.type';
-import Image from 'next/image';
 import { leagueLogoUrl, leagueName } from '../utils/constants';
 
 interface DashboardProps {
