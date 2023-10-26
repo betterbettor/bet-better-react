@@ -22,9 +22,10 @@ const CustomDisplay = ({
 }: CustomDisplayProps) => {
   const now = new Date();
 
-  const getReadableDate = (date: Date): string | null => {
+  const getReadableDate = (date: Date): string => {
     const nowInDay = new Date(now.toDateString()).getTime();
     const dateInDay = new Date(date.toDateString()).getTime();
+
     switch (dateInDay) {
       case nowInDay:
         return 'Today';
@@ -33,7 +34,7 @@ const CustomDisplay = ({
       case nowInDay - twentyFourHoursInMilliseconds:
         return 'Yesterday';
       default:
-        return null;
+        return '';
     }
   };
 
@@ -59,11 +60,11 @@ const CustomDisplay = ({
         maxDate={maxDate}
         onChange={onChange}
       />
-      <button className="custom-input" onClick={onClick} ref={pickerRef}>
-        {readableDate === null
-          ? formattedDate
-          : `${readableDate}, ${formattedDate}`}
+
+      <button ref={pickerRef} className="custom-input" onClick={onClick}>
+        {!readableDate ? formattedDate : `${readableDate}, ${formattedDate}`}
       </button>
+
       <StepBtn
         increment={true}
         startDate={startDate}
