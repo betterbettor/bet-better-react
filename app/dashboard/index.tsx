@@ -66,8 +66,8 @@ const Dashboard = ({ matches }: DashboardProps) => {
 
   return (
     <div>
-      <div className="u-mb-5 u-flex u-flex-col u-gap-3 u-items-stretch sm:u-flex-row sm:u-justify-between sm:u-items-center">
-        <div className="u-w-full u-h-fit u-flex u-flex-row u-items-center u-justify-center u-gap-2 u-p-1 u-bg-green-100 u-rounded-3xl sm:u-w-56">
+      <div className="u-mb-5 u-flex u-flex-col u-gap-3 u-items-stretch sm:u-grid sm:u-grid-cols-3 sm:u-items-center sm:u-gap-2">
+        <div className="u-p-1 u-w-full u-h-full u-bg-green-100 u-flex u-flex-row u-items-center u-justify-center u-gap-2 u-rounded-3xl sm:u-max-w-[208px] sm:u-gap-0">
           <Image src={leagueLogoUrl} alt={leagueName} width={70} height={70} />{' '}
           <div className="u-font-bold u-text-3xl u-text-[#3D195B]">
             {leagueName}
@@ -75,16 +75,16 @@ const Dashboard = ({ matches }: DashboardProps) => {
         </div>
 
         <DatePicker
-          className="sm:u-basis-64"
+          className="sm:u-m-auto sm:u-w-full sm:u-max-w-[256px]"
           startDate={startDate}
           onChange={handleChangeDate}
         />
 
         <button
-          className={`u-block u-py-3 u-px-7 u-rounded sm:u-w-40 ${
+          className={`u-block u-py-2 u-px-5 u-font-bold u-rounded u-shadow-lg u-transition-shadow hover:u-shadow-xl sm:u-ml-auto sm:u-py-3 sm:u-px-7 sm:u-w-40 ${
             hasAllTilesExpanded
-              ? 'u-bg-green-600'
-              : 'u-bg-green-300 u-text-black'
+              ? 'u-bg-green-600 u-text-green-100'
+              : 'u-bg-green-300 u-text-green-950'
           }`}
           onClick={handleToggleAll}
           disabled={!matches.length}

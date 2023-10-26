@@ -1,22 +1,35 @@
 interface DateInfoProps {
   startTime: Date;
   lastUpdated: Date;
+  className?: string;
 }
 
-const DateInfo = ({ startTime, lastUpdated }: DateInfoProps) => {
+const DateInfo = ({
+  startTime,
+  lastUpdated,
+  className = '',
+}: DateInfoProps) => {
   const dateTimeFormatOptions: Intl.DateTimeFormatOptions = {
     dateStyle: 'medium',
     timeStyle: 'short',
   };
 
   return (
-    <p className="u-text-xs u-flex u-justify-between u-gap-3 u-flex-wrap">
+    <p
+      className={`u-text-xs u-flex u-justify-between u-gap-1 u-flex-wrap ${className}`}
+    >
       <span>
-        Start Date: {startTime.toLocaleString(undefined, dateTimeFormatOptions)}
+        <span className="u-font-bold">Start Date:</span>{' '}
+        <span>
+          {startTime.toLocaleString(undefined, dateTimeFormatOptions)}
+        </span>
       </span>
+
       <span>
-        Last updated:{' '}
-        {lastUpdated.toLocaleString(undefined, dateTimeFormatOptions)}
+        <span className="u-font-bold">Last updated:</span>{' '}
+        <span>
+          {lastUpdated.toLocaleString(undefined, dateTimeFormatOptions)}
+        </span>
       </span>
     </p>
   );
