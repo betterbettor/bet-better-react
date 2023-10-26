@@ -103,14 +103,6 @@ const Dashboard = ({ matches }: DashboardProps) => {
 
   return (
     <div>
-      <SearchBar
-        value={keyword}
-        suggestions={suggestedTeamNames}
-        onChange={handleInputChange}
-        onSuggestionClicked={handleSuggestionClicked}
-        onSubmit={handleSubmit}
-      />
-
       <div className="u-grid u-gap-3 sm:u-grid-cols-[1fr_auto_1fr] u-mb-5 u-items-center u-justify-items-center u-basis-full">
         <div className="u-w-full sm:u-w-56 u-h-fit u-flex u-flex-row u-items-center u-justify-center u-gap-2 u-p-1 u-bg-green-100 u-rounded-3xl sm:u-mr-auto">
           <Image src={leagueLogoUrl} alt={leagueName} width={70} height={70} />{' '}
