@@ -23,7 +23,10 @@ const Home = async () => {
   return (
     <main className="u-p-5 u-min-h-screen sm:u-py-7 sm:u-px-9">
       <h1 className="u-mb-5 u-text-3xl u-text-yellow-400 u-font-bold sm:u-text-5xl sm:u-text-center">
-        BetBetter
+        <span className="u-inline-block u-rotate-0 u-transition-transform hover:u-rotate-180">
+          ⚽
+        </span>
+        <span>BetBetter</span>
       </h1>
 
       <Dashboard matches={matches} />
