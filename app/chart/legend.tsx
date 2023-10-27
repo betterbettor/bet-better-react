@@ -1,7 +1,7 @@
 import { SVGProps, useCallback } from 'react';
 import { line } from 'd3';
 import { LineItem } from '@/interfaces/ui.type';
-import { dateTimeFormatOptions } from '../utils/constants';
+import { dateTimeFormatOptions, numberFormatOptions } from '../utils/constants';
 
 interface LegendProps extends SVGProps<SVGSVGElement> {
   items: LineItem[];
@@ -43,13 +43,11 @@ const Legend = ({
     (d) => d[1],
   );
 
-  const getValueString = useCallback(
-    (value: number | Date) =>
-      value instanceof Date
-        ? value.toLocaleString(undefined, dateTimeFormatOptions)
-        : value.toString(),
-    [],
-  );
+  const getValueString = useCallback((value: number | Date) => {
+    const formatOption =
+      value instanceof Date ? dateTimeFormatOptions : numberFormatOptions;
+    return value.toLocaleString(undefined, formatOption);
+  }, []);
 
   return (
     <svg className="u-w-fit u-h-full" {...props}>

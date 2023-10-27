@@ -12,6 +12,11 @@ export const dateTimeFormatOptions: Intl.DateTimeFormatOptions = {
   timeStyle: 'short',
 };
 
+export const numberFormatOptions: Intl.NumberFormatOptions = {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+};
+
 export const lineItems: LineItem[] = [
   { key: 'home', label: 'Home', color: '#22C55E' },
   { key: 'draw', label: 'Draw', color: '#CA8A04' },
