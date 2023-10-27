@@ -7,6 +7,11 @@ export const leagueName = 'Premier League';
 export const leagueLogoUrl =
   'https://media-4.api-sports.io/football/leagues/39.png';
 
+export const dateTimeFormatOptions: Intl.DateTimeFormatOptions = {
+  dateStyle: 'medium',
+  timeStyle: 'short',
+};
+
 export const lineItems: LineItem[] = [
   { key: 'home', label: 'Home', color: '#22C55E' },
   { key: 'draw', label: 'Draw', color: '#CA8A04' },

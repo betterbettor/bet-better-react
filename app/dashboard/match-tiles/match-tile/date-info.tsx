@@ -1,3 +1,5 @@
+import { dateTimeFormatOptions } from '@/app/utils/constants';
+
 interface DateInfoProps {
   startTime: Date;
   lastUpdated: Date;
@@ -9,11 +11,6 @@ const DateInfo = ({
   lastUpdated,
   className = '',
 }: DateInfoProps) => {
-  const dateTimeFormatOptions: Intl.DateTimeFormatOptions = {
-    dateStyle: 'medium',
-    timeStyle: 'short',
-  };
-
   return (
     <p
       className={`u-text-xs u-flex u-justify-between u-gap-1 u-flex-wrap ${className}`}

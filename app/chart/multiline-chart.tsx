@@ -49,7 +49,8 @@ const MultiLineChart = ({
     .range([height - margin, margin]);
 
   const [activeLineItem, setActiveLineItem] = useState('');
-  const handleMouseEnterLegendItem = (key: string) => () =>
+
+  const handleMouseEnterLineItem = (key: string) => () =>
     setActiveLineItem(key);
 
   return (
@@ -67,7 +68,7 @@ const MultiLineChart = ({
           items={lineItems}
           activeItemKey={activeLineItem}
           x={margin}
-          onMouseEnterItem={handleMouseEnterLegendItem}
+          onMouseEnterItem={handleMouseEnterLineItem}
           onMouseLeaveItem={() => setActiveLineItem('')}
         />
       )}
@@ -98,6 +99,8 @@ const MultiLineChart = ({
           scaleY={scaleY}
           fill={lineItem.color}
           chartKey={chartKey}
+          onMouseEnterPoint={handleMouseEnterLineItem}
+          onMouseLeavePoint={() => setActiveLineItem('')}
         />
       ))}
     </svg>

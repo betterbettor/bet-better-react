@@ -6,6 +6,8 @@ interface DataPointsProps<T>
     SVGProps<SVGCircleElement> {
   isActive?: boolean;
   chartKey?: string;
+  onMouseEnterPoint: (key: string) => () => void;
+  onMouseLeavePoint: () => void;
 }
 
 const DataPoints = ({
@@ -17,6 +19,8 @@ const DataPoints = ({
   r = 2.5,
   isActive = false,
   chartKey = '',
+  onMouseEnterPoint,
+  onMouseLeavePoint,
   ...props
 }: DataPointsProps<Record<string, any>>) => {
   return (
@@ -30,6 +34,8 @@ const DataPoints = ({
           cx={scaleX(d[xKey])}
           cy={scaleY(d[yKey])}
           r={r}
+          onMouseEnter={onMouseEnterPoint(yKey)}
+          onMouseLeave={onMouseLeavePoint}
           {...props}
         />
       ))}
