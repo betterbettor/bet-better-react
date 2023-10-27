@@ -1,8 +1,17 @@
-# Bet Better Web App
+# ⚽ Bet Better Web App
 
 The frontend UI of the `BetBetter` server. A live demo can be previewed [here](https://main--bet-better-react.netlify.app/).
 
-## Local Development
+## ✨ Features
+
+- Simplistic UI for easy browsing of matches info:
+  - start date and time
+  - home and away teams
+  - current odds
+- Match filtering by date picker
+- Toggle to expand for detailed odds trend
+
+## 💻 Local Development
 
 The following environment variables need to be set up in the `.env.local` file in the root directory in order to start the local development.
 
