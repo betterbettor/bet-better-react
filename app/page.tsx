@@ -25,7 +25,7 @@ const Home = async () => {
       <h1 className="u-mb-5 u-text-3xl u-text-yellow-400 u-font-bold sm:u-text-5xl sm:u-text-center">
         <span className="u-inline-block u-rotate-0 u-transition-transform hover:u-rotate-180">
           ⚽
-        </span>
+        </span>{' '}
         <span>BetBetter</span>
       </h1>
 
