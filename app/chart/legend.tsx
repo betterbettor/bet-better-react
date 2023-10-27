@@ -4,11 +4,14 @@ import { LineItem } from '@/interfaces/ui.type';
 
 interface LegendProps extends SVGProps<SVGSVGElement> {
   items: LineItem[];
+  activeItemKey?: string;
   pathLength?: number;
   margin?: number;
   itemHeight?: number;
   pathProps?: SVGProps<SVGPathElement>;
   circleProps?: SVGProps<SVGCircleElement>;
+  onMouseEnterItem: (key: string) => () => void;
+  onMouseLeaveItem: () => void;
 }
 
 const DEFAULT_PATH_PROPS: SVGProps<SVGPathElement> = { strokeWidth: 1.5 };
@@ -16,6 +19,7 @@ const DEFAULT_CIRCLE_PROPS: SVGProps<SVGCircleElement> = { r: 2.5 };
 
 const Legend = ({
   items,
+  activeItemKey = '',
   pathLength = 20,
   margin = 20,
   itemHeight = 30,
@@ -27,6 +31,8 @@ const Legend = ({
     r = DEFAULT_CIRCLE_PROPS.r,
     ...circlePropsRest
   } = DEFAULT_CIRCLE_PROPS,
+  onMouseEnterItem,
+  onMouseLeaveItem,
   ...props
 }: LegendProps) => {
   const getLineData = line(
@@ -40,7 +46,11 @@ const Legend = ({
         <g
           key={`legend-${item.key}`}
           fill={item.color}
-          className="u-opacity-70 hover:u-opacity-90"
+          className={`hover:u-opacity-90 ${
+            activeItemKey === item.key ? 'u-opacity-90' : 'u-opacity-70'
+          }`}
+          onMouseEnter={onMouseEnterItem(item.key)}
+          onMouseLeave={onMouseLeaveItem}
         >
           <path
             {...pathPropsRest}

@@ -4,6 +4,7 @@ import { ChartDataProps } from '@/interfaces/ui.type';
 interface DataPointsProps<T>
   extends ChartDataProps<T>,
     SVGProps<SVGCircleElement> {
+  isActive?: boolean;
   chartKey?: string;
 }
 
@@ -14,6 +15,7 @@ const DataPoints = ({
   scaleX,
   scaleY,
   r = 2.5,
+  isActive = false,
   chartKey = '',
   ...props
 }: DataPointsProps<Record<string, any>>) => {
@@ -22,7 +24,9 @@ const DataPoints = ({
       {data.map((d) => (
         <circle
           key={`point-${chartKey}-${yKey}-${d[xKey]}`}
-          className="u-opacity-70 hover:u-opacity-90"
+          className={`hover:u-opacity-90 ${
+            isActive ? 'u-opacity-90' : 'u-opacity-70'
+          }`}
           cx={scaleX(d[xKey])}
           cy={scaleY(d[yKey])}
           r={r}

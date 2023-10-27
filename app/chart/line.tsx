@@ -2,7 +2,9 @@ import { SVGProps } from 'react';
 import { line } from 'd3';
 import { ChartDataProps } from '@/interfaces/ui.type';
 
-interface LineProps<T> extends ChartDataProps<T>, SVGProps<SVGPathElement> {}
+interface LineProps<T> extends ChartDataProps<T>, SVGProps<SVGPathElement> {
+  isActive?: boolean;
+}
 
 const Line = ({
   data,
@@ -12,6 +14,7 @@ const Line = ({
   scaleY,
   fill = 'none',
   strokeWidth = 1.5,
+  isActive = false,
   ...props
 }: LineProps<Record<string, any>>) => {
   const getLineData = line(
@@ -21,7 +24,9 @@ const Line = ({
 
   return (
     <path
-      className="u-opacity-70 hover:u-opacity-90 hover:u-stroke-2"
+      className={`hover:u-opacity-90 hover:u-stroke-2 ${
+        isActive ? 'u-opacity-90 u-stroke-2' : 'u-opacity-70'
+      }`}
       {...props}
       fill={fill}
       strokeWidth={strokeWidth}

@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import { scaleUtc, scaleLinear, extent } from 'd3';
 import AxisBottom from './axis-bottom';
 import AxisLeft from './axis-left';
@@ -27,7 +30,7 @@ const MultiLineChart = ({
   width = 800,
   height = 400,
   margin = 20,
-  scaleYMultiplier = 1.1,
+  scaleYMultiplier = 1.3,
 }: MultiLineChartProps<Record<string, any>>) => {
   const scaleX = scaleUtc()
     .domain(extent(data, (d) => d[xKey]).map((value) => value ?? 0))
@@ -45,6 +48,10 @@ const MultiLineChart = ({
     .nice()
     .range([height - margin, margin]);
 
+  const [activeLineItem, setActiveLineItem] = useState('');
+  const handleMouseEnterLegendItem = (key: string) => () =>
+    setActiveLineItem(key);
+
   return (
     <svg
       className="u-min-h-[200px] u-overflow-visible"
@@ -55,23 +62,35 @@ const MultiLineChart = ({
 
       <AxisLeft scaleY={scaleY} />
 
-      {showLegend && <Legend items={lineItems} x={margin} />}
+      {showLegend && (
+        <Legend
+          items={lineItems}
+          activeItemKey={activeLineItem}
+          x={margin}
+          onMouseEnterItem={handleMouseEnterLegendItem}
+          onMouseLeaveItem={() => setActiveLineItem('')}
+        />
+      )}
 
       {lineItems.map((lineItem) => (
         <Line
           key={`line-${chartKey}-${lineItem.key}`}
+          isActive={lineItem.key === activeLineItem}
           stroke={lineItem.color}
           data={data}
           xKey={xKey}
           yKey={lineItem.key}
           scaleX={scaleX}
           scaleY={scaleY}
+          onMouseEnter={() => setActiveLineItem(lineItem.key)}
+          onMouseLeave={() => setActiveLineItem('')}
         />
       ))}
 
       {lineItems.map((lineItem) => (
         <DataPoints
           key={`points-${chartKey}-${lineItem.key}`}
+          isActive={lineItem.key === activeLineItem}
           data={data}
           xKey={xKey}
           yKey={lineItem.key}
