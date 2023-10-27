@@ -40,8 +40,7 @@ const Dashboard = ({ matches }: DashboardProps) => {
 
   const matchesFilteredByDate = useMemo(() => {
     return matches.filter(
-      (match) =>
-        new Date(match.startTime).toDateString() === startDate.toDateString(),
+      (match) => match.startTime.toDateString() === startDate.toDateString(),
     );
   }, [matches, startDate]);
 
