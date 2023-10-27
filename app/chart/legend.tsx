@@ -1,10 +1,12 @@
-import { SVGProps } from 'react';
+import { SVGProps, useCallback } from 'react';
 import { line } from 'd3';
 import { LineItem } from '@/interfaces/ui.type';
+import { dateTimeFormatOptions } from '../utils/constants';
 
 interface LegendProps extends SVGProps<SVGSVGElement> {
   items: LineItem[];
   activeItemKey?: string;
+  activeDataPoint?: Record<string, number | Date> | null;
   pathLength?: number;
   margin?: number;
   itemHeight?: number;
@@ -20,6 +22,7 @@ const DEFAULT_CIRCLE_PROPS: SVGProps<SVGCircleElement> = { r: 2.5 };
 const Legend = ({
   items,
   activeItemKey = '',
+  activeDataPoint = null,
   pathLength = 20,
   margin = 20,
   itemHeight = 30,
@@ -40,13 +43,21 @@ const Legend = ({
     (d) => d[1],
   );
 
+  const getValueString = useCallback(
+    (value: number | Date) =>
+      value instanceof Date
+        ? value.toLocaleString(undefined, dateTimeFormatOptions)
+        : value.toString(),
+    [],
+  );
+
   return (
     <svg className="u-w-fit u-h-full" {...props}>
       {items.map((item, idx) => (
         <g
           key={`legend-${item.key}`}
           fill={item.color}
-          className={`hover:u-opacity-90 ${
+          className={`u-font-bold hover:u-opacity-90 ${
             activeItemKey === item.key ? 'u-opacity-90' : 'u-opacity-70'
           }`}
           onMouseEnter={onMouseEnterItem(item.key)}
@@ -73,13 +84,23 @@ const Legend = ({
           />
 
           <text
-            className="u-font-bold"
             x={margin + pathLength}
             y={margin + idx * itemHeight}
             alignmentBaseline="middle"
           >
             {item.label}
           </text>
+
+          {!!activeDataPoint && (
+            <text
+              x={margin + pathLength + 90}
+              y={margin + idx * itemHeight}
+              alignmentBaseline="middle"
+              textAnchor="end"
+            >
+              {getValueString(activeDataPoint[item.key])}
+            </text>
+          )}
         </g>
       ))}
     </svg>

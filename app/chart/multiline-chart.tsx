@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { scaleUtc, scaleLinear, extent } from 'd3';
 import AxisBottom from './axis-bottom';
 import AxisLeft from './axis-left';
@@ -50,8 +50,22 @@ const MultiLineChart = ({
 
   const [activeLineItem, setActiveLineItem] = useState('');
 
-  const handleMouseEnterLineItem = (key: string) => () =>
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  const activeDataPoint = useMemo(
+    () => (activeIndex > -1 ? data[activeIndex] : null),
+    [activeIndex, data],
+  );
+
+  const handleMouseEnterLegendItem = (key: string) => () =>
     setActiveLineItem(key);
+
+  const handleMouseEnterDataPoint =
+    (key: string = '', index: number = -1) =>
+    () => {
+      setActiveLineItem(key);
+      setActiveIndex(index);
+    };
 
   return (
     <svg
@@ -67,8 +81,9 @@ const MultiLineChart = ({
         <Legend
           items={lineItems}
           activeItemKey={activeLineItem}
+          activeDataPoint={activeDataPoint}
           x={margin}
-          onMouseEnterItem={handleMouseEnterLineItem}
+          onMouseEnterItem={handleMouseEnterLegendItem}
           onMouseLeaveItem={() => setActiveLineItem('')}
         />
       )}
@@ -99,8 +114,8 @@ const MultiLineChart = ({
           scaleY={scaleY}
           fill={lineItem.color}
           chartKey={chartKey}
-          onMouseEnterPoint={handleMouseEnterLineItem}
-          onMouseLeavePoint={() => setActiveLineItem('')}
+          onMouseEnterPoint={handleMouseEnterDataPoint}
+          onMouseLeavePoint={handleMouseEnterDataPoint()}
         />
       ))}
     </svg>
