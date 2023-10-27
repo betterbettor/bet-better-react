@@ -1,12 +1,18 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import MatchTiles from './match-tiles';
-import DatePicker from './date-picker';
+import Loading from '../loading';
 import { Match } from '@/interfaces/match.interface';
 import { ExpandedMap, ExpandedMapStates } from '@/interfaces/ui.type';
 import { leagueLogoUrl, leagueName } from '../utils/constants';
+
+const DatePicker = dynamic(() => import('./date-picker'), {
+  ssr: false,
+  loading: () => <Loading />,
+});
 
 interface DashboardProps {
   matches: Match[];
