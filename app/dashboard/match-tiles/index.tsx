@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic';
-import Loading from '@/app/loading';
+import MatchTileLoading from './match-tile/loading';
 import { Match } from '@/interfaces/match.interface';
 import { ExpandedMap } from '@/interfaces/ui.type';
 
 const MatchTile = dynamic(() => import('./match-tile'), {
   ssr: false,
-  loading: () => <Loading />,
+  loading: () => <MatchTileLoading />,
 });
 
 interface MatchTilesProps {

@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import MatchTileContainer from './container';
 import DateInfo from './date-info';
 import OddsBlock from './odds-block';
 import ExpandableSection from './expandable-section';
@@ -28,7 +29,7 @@ const MatchTile = ({
   const handleToggleClick = () => onToggleMatchTile(match.id);
 
   return (
-    <div className="u-p-3 u-bg-green-100 u-rounded-xl u-border u-text-slate-900 u-shadow sm:u-px-5">
+    <MatchTileContainer>
       <div>
         <DateInfo
           className="u-mb-3"
@@ -82,7 +83,7 @@ const MatchTile = ({
           />
         </div>
       </ExpandableSection>
-    </div>
+    </MatchTileContainer>
   );
 };
 
