@@ -1,3 +1,4 @@
+import { twMerge } from 'tailwind-merge';
 import { dateTimeFormatOptions } from '@/app/utils/constants';
 
 interface DateInfoProps {
@@ -13,7 +14,10 @@ const DateInfo = ({
 }: DateInfoProps) => {
   return (
     <p
-      className={`u-text-xs u-flex u-justify-between u-gap-1 u-flex-wrap ${className}`}
+      className={twMerge(
+        'u-text-xs u-flex u-justify-between u-gap-1 u-flex-wrap',
+        className,
+      )}
     >
       <span>
         <span className="u-font-bold">Start Date:</span>{' '}

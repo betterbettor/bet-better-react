@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface ExpandableSectionProps {
   isExpanded: boolean;
@@ -13,9 +14,11 @@ const ExpandableSection = ({
 }: ExpandableSectionProps) => {
   return (
     <div
-      className={`u-h-full u-overflow-hidden u-transition-[max-height] ${
-        isExpanded ? 'u-max-h-screen' : 'u-max-h-0'
-      } ${className}`}
+      className={twMerge(
+        'u-h-full u-overflow-hidden u-transition-[max-height]',
+        isExpanded ? 'u-max-h-screen' : 'u-max-h-0',
+        className,
+      )}
     >
       {children}
     </div>
